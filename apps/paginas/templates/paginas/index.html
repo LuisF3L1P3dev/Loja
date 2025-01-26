@@ -1,0 +1,10 @@
+{% extends "paginas/base_paginas.html" %}
+{% load static %}
+
+{% block content %}
+  <h1>Pagina Inicial</h1>
+  <ul>
+    <li><a href=" {% url "list_produtos" %} ">Produtos</a></li>
+    <li><a href=" {% url "list_categorias" %} ">Categorias</a></li>
+  </ul>
+{% endblock %}
