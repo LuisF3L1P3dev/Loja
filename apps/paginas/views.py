@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, ListView, CreateView
 from .models import Produto, Categoria, Fornecedor
-from .forms import CadastroFornecedoresForms
+from .forms import CadastroFornecedoresForms, CadastroProdutosForms, CadastroCategoriaForms
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -28,3 +28,14 @@ class FornecedorCreateView(CreateView):
     form_class = CadastroFornecedoresForms
     success_url = reverse_lazy('list_fornecedores')
     
+class ProdutoCreateView(CreateView):
+    template_name = "paginas/form_create_produto.html"
+    model = Produto
+    form_class = CadastroProdutosForms
+    success_url = reverse_lazy('list_produtos')
+    
+class CategoriaCreateView(CreateView):
+    template_name = "paginas/form_create_categoria.html"
+    model = Categoria
+    form_class = CadastroCategoriaForms
+    success_url = reverse_lazy('list_categorias')

@@ -1,13 +1,13 @@
-{% extends "paginas/base_paginas.html." %}
+{% extends "paginas/base_paginas.html" %}
 {% load static %}
 
 {% block content %}
 
-<h1> Adicionar fornecedor </h1>
-<button type="button"><a href=" {% url "list_fornecedores" %}">Voltar</a></button>
+<h1> Adicionar Categoria </h1>
+<button type="button"><a href=" {% url "list_categorias" %}">Voltar</a></button>
 
 <form action="." method="post">
-    {%  csrf_token %}
+    {% csrf_token %}
 
     {{ form.as_p }}
 
