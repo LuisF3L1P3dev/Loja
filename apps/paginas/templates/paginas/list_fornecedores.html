@@ -1,0 +1,32 @@
+{% extends 'paginas/base_paginas.html' %}
+{% load static %}
+
+{% block content %}
+
+<button type="button"><a href=" {% url "index" %}">Voltar</a></button>
+<h1>Fonecedores</h1>
+
+<ul>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Cnpj</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+    {% for fornecedor in fornecedores %}   
+      <tr>
+        <th scope="row"> {{ fornecedor.id }}</th>
+        <td>{{ fornecedor.nome }}</td>
+        <td>{{ fornecedor.cnpj }}</td>
+      </tr> 
+    {% endfor %}
+  
+    </tbody>
+    </table>
+</ul>
+
+{% endblock %}  

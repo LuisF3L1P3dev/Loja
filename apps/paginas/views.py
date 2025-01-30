@@ -13,3 +13,8 @@ class CategoriasView(ListView):
     model = Categoria
     template_name = 'paginas/list_categorias.html'
     context_object_name = 'categorias'
+
+class FornecedorView(ListView):
+    model = Fornecedor
+    template_name = 'paginas/list_fornecedores.html'
+    context_object_name = 'fornecedores'
