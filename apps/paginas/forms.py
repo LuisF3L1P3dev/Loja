@@ -1,7 +1,7 @@
 from django import forms
 from .models import Fornecedor, Produto, Categoria
 from django.core.validators import ValidationError, MinValueValidator
-from .validators import validar_preco_positivo
+from .validators import validar_preco_positivo, quantidade_estoque_inteiro_positivo
 
 class CadastroFornecedoresForms(forms.ModelForm):
     class Meta:
@@ -10,7 +10,8 @@ class CadastroFornecedoresForms(forms.ModelForm):
         
 class CadastroProdutosForms(forms.ModelForm):
     preco = forms.DecimalField(validators=[validar_preco_positivo])
-    
+    quantidade = forms.IntegerField(validators=[quantidade_estoque_inteiro_positivo])    
+
     class Meta:
         model = Produto
         fields = '__all__'
