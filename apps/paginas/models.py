@@ -1,8 +1,9 @@
 from django.db import models
+from django.core.validators import MinLengthValidator
 
 # Create your models here.
 class Produto(models.Model):
-    nome = models.CharField(max_length=100)
+    nome = models.CharField(max_length=100, validators=[MinLengthValidator(3, 'o campode ter no minimo 3 caracteres')])
     codigo = models.CharField(max_length=10, unique=True)
     descricao = models.TextField(blank=True, null=True, default=None)
     preco = models.DecimalField(max_digits=5, decimal_places=2)
