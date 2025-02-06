@@ -11,7 +11,8 @@ class ProdutosView(ListView):
     model = Produto
     template_name = 'paginas/list_produtos.html'
     context_object_name = 'produtos'
-
+    paginate_by = 5
+    
 class CategoriasView(ListView):
     model = Categoria
     template_name = 'paginas/list_categorias.html'
