@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.views.generic import TemplateView, ListView, CreateView
 from .models import Produto, Categoria, Fornecedor
 from .forms import CadastroFornecedoresForms, CadastroProdutosForms, CadastroCategoriaForms
@@ -12,6 +13,14 @@ class ProdutosView(ListView):
     template_name = 'paginas/list_produtos.html'
     context_object_name = 'produtos'
     paginate_by = 5
+
+    def get_queryset(self):
+        queryset = Produto.objects.all()
+        query = self.request.GET.get('produto')
+
+        if query:
+            queryset = queryset.filter(nome__icontains=query)
+        return queryset
     
 class CategoriasView(ListView):
     model = Categoria

@@ -7,6 +7,10 @@
 <h1>Produtos</h1>
 
 <ul>
+  <form method="get" class="form-inline mb-3">
+    <input type="text" name="produto" class="form-control mr-2" placeholder="Pesquisar produtos..." value="{{ request.GET.q }}">
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+  </form>
   <table class="table table-striped">
   <thead>
     <tr>
