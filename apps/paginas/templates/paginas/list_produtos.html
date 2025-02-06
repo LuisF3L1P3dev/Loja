@@ -8,7 +8,7 @@
 
 <ul>
   <form method="get" class="form-inline mb-3">
-    <input type="text" name="produto" class="form-control mr-2" placeholder="Pesquisar produtos..." value="{{ request.GET.q }}">
+    <input type="text" name="produto" class="form-control mr-2" placeholder="Pesquisar produtos..." value="{{ request.GET.produto }}">
     <button type="submit" class="btn btn-primary">Pesquisar</button>
   </form>
   <table class="table table-striped">
@@ -35,17 +35,19 @@
   {% endfor %}
   </tbody>
   </table>
+
+
   {% if page_obj.has_previous %}
-   <a href="?page=1">&laquo; primeira</a>
-   <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
-{% endif %}
-<span>
-   Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
-</span>
-{% if page_obj.has_next %}
-   <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
-   <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
-{% endif %}
+    <a href="?page=1{% if request.GET.produto %}&produto={{ request.GET.produto }}{% endif %}">&laquo; Primeira</a>
+    <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.produto %}&produto={{ request.GET.produto }}{% endif %}">Anterior</a>
+  {% endif %}
+  
+  <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+  
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.produto %}&produto={{ request.GET.produto }}{% endif %}">Próxima</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.produto %}&produto={{ request.GET.produto }}{% endif %}">Última &raquo;</a>
+  {% endif %}
 
 
 </ul>
