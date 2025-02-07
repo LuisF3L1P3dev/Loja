@@ -9,8 +9,12 @@
 <ul>
   <form method="get" class="form-inline mb-3">
     <input type="text" name="produto" class="form-control mr-2" placeholder="Pesquisar produtos..." value="{{ request.GET.produto }}">
+    <input type="text" name="preco_min" class="form-control mr-2" placeholder="Preço mínimo" value="{{ request.GET.preco_min }}">
+    <input type="text" name="preco_max" class="form-control mr-2" placeholder="Preço máximo" value="{{ request.GET.preco_max }}">
+    
     <button type="submit" class="btn btn-primary">Pesquisar</button>
   </form>
+  
   <table class="table table-striped">
   <thead>
     <tr>
@@ -36,17 +40,17 @@
   </tbody>
   </table>
 
-
+  {% comment %} com {{ request.GET.urlencode }} não preciso de if e não preciso passar mais o queryset {% endcomment %}
   {% if page_obj.has_previous %}
-    <a href="?page=1{% if request.GET.produto %}&produto={{ request.GET.produto }}{% endif %}">&laquo; Primeira</a>
-    <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.produto %}&produto={{ request.GET.produto }}{% endif %}">Anterior</a>
+    <a href="?page=1{{ request.GET.urlencode }}">&laquo; Primeira</a>
+    <a href="?page={{ page_obj.previous_page_number }}&{{ request.GET.urlencode }}">Anterior</a>
   {% endif %}
   
   <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
   
   {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.produto %}&produto={{ request.GET.produto }}{% endif %}">Próxima</a>
-    <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.produto %}&produto={{ request.GET.produto }}{% endif %}">Última &raquo;</a>
+    <a href="?page={{ page_obj.next_page_number }}&{{ request.GET.urlencode }}">Próxima</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}&{{ request.GET.urlencode }}">Última &raquo;</a>
   {% endif %}
 
 

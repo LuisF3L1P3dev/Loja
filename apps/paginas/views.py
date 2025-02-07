@@ -16,10 +16,17 @@ class ProdutosView(ListView):
 
     def get_queryset(self):
         queryset = Produto.objects.all()
-        query = self.request.GET.get('produto')
-
-        if query:
-            queryset = queryset.filter(nome__icontains=query)
+        
+        produto = self.request.GET.get('produto')
+        preco_min = self.request.GET.get('preco_min')
+        preco_max = self.request.GET.get('preco_max')
+        
+        if produto:
+            queryset = queryset.filter(nome__icontains=produto)#icontains ignora case sensitive
+        if preco_min:
+            queryset = queryset.filter(preco__gte=preco_min)#maior ou igual
+        if preco_max:
+            queryset = queryset.filter(preco__lte=preco_max)#menor ou igual
         return queryset
     
 class CategoriasView(ListView):
